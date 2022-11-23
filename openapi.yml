@@ -1,0 +1,69 @@
+---
+openapi: 3.0.0
+info:
+  title: Network-Management-Api-Events
+  description: API for network and device management events
+  contact:
+    email: achen178@my.bcit.ca
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /health:
+    get:
+      operationId: app.get_health
+      responses:
+        '200':
+          description: ok
+  /stats:
+    get:
+      summary: get event statistics
+      description: returns all registered devices
+      operationId: app.get_stats
+      responses:
+        '200':
+          description: Success! list of events.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/NetworkStats'
+        '400':
+          description: failed to retrieve events.Either not found or invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+components:
+  schemas:
+    NetworkStats:
+      required:
+      - num_devices
+      - max_device_latency
+      - num_networks
+      - max_network_device_count
+      - last_updated
+      type: object
+      properties:
+        num_devices:
+          type: integer
+          format: int64
+          example: 500
+        max_device_latency:
+          type: number
+          format: float64
+          example: 1.45
+        num_networks:
+          type: integer
+          format: int64
+          example: 25
+        max_network_device_count:
+          type: integer
+          format: int64
+          example: 100
+        last_updated:
+          type: string
+          format: date-time

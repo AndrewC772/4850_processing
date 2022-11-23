@@ -1,0 +1,18 @@
+@Library('ci_assign_3') _
+python_build('processing', 'latest')
+
+// pipeline {
+//         agent any
+//         stages {
+//             stage('Build') {
+//                 steps {
+//                     sh 'pip install -r requirements.txt'
+//                 }
+//             }
+//             stage('Python Lint'){
+//                 steps{
+//                     sh 'pylint-fail-under --fail_under 5 *.py'
+//                 }
+//             }
+//         }
+//     }
