@@ -81,6 +81,7 @@ def get_stats():
 
 def populate_stats():
     """ Periodically update stats """
+    logger.info("TESTING!!!!")
     logger.info(f"Start Periodic Processing")
     session = DB_SESSION()
     latest_row = session.query(Event).order_by(Event.id.desc()).first()
